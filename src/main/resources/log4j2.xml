@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--过滤log4j自身的level-->
+<Configuration status="error">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            <!-- Flow tracing is most useful with a pattern that shows location.
+                 Below pattern outputs class, line number and method name. -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+        </Console>
+        <Test name="test"></Test>
+    </Appenders>
+    <Loggers>
+        <!--过滤appender的level-->
+        <Root level="debug">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="test"/>
+        </Root>
+    </Loggers>
+</Configuration>
